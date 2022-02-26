@@ -7,6 +7,35 @@ $(document).ready(function (){
         var time = $(this).parent().attr("id")
         //look up local storage set item
         console.log(text, time)
+        localStorage.setItem(text, time)
     })
 })
 
+function timeChecker() {
+    var currentTime=moment().hours();
+    console.log(currentTime)
+
+    $(".time-block").each(function(){
+        var taskHour = parseInt( $(this).attr("id").split("hour")[1])
+        console.log(taskHour)
+
+        if(taskHour < currentTime){
+            $(this).addClass("past");
+    
+        }
+        else if(taskHour === currentTime){
+            $(this).addClass("present")
+
+        }
+        else {
+            $(this).addClass("future")
+
+        }
+    });
+
+
+   
+
+}
+
+timeChecker();
